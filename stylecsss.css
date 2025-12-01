@@ -1,0 +1,132 @@
+:root{
+  --bg: #05060a;
+  --panel: rgba(255,255,255,0.02);
+  --muted: #9aa6b2;
+  --accent: linear-gradient(90deg,#7c3aed 0%, #06b6d4 100%);
+  --glass: rgba(255,255,255,0.03);
+  --radius: 12px;
+  --gap: 18px;
+  --card-shadow: 0 6px 24px rgba(2,6,23,0.6);
+  --focus: rgba(96,165,250,0.18);
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg), #071025 60%);color:#e6eef8;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+a{color:inherit}
+.skip-link{position:absolute;left:-999px}
+.skip-link:focus{left:1rem;top:1rem;width:auto;height:auto;background:#fff;color:#000;padding:.3rem .5rem;border-radius:6px;z-index:9999}
+
+/* Header */
+.site-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:18px;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+  border-bottom:1px solid rgba(255,255,255,0.02);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .avatar{width:44px;height:44px;border-radius:10px;overflow:hidden;flex-shrink:0;box-shadow:var(--card-shadow)}
+.brand-text .username{font-weight:700;letter-spacing:0.2px}
+.brand-text .tagline{font-size:12px;color:var(--muted);margin-top:2px}
+
+/* Controls */
+.controls{display:flex;align-items:center;gap:12px}
+.search{display:flex;align-items:center;background:var(--glass);padding:8px 10px;border-radius:10px;gap:8px}
+.search .icon{width:16px;height:16px;opacity:0.75}
+.search input{border:0;background:transparent;color:inherit;outline:none;min-width:160px;font-size:14px}
+.btn{background:linear-gradient(90deg,#0b1120, #071025);border:1px solid rgba(255,255,255,0.04);color:#e6eef8;padding:8px 12px;border-radius:10px;cursor:pointer;transition:transform .12s ease,box-shadow .12s ease}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.03)}
+.btn.subtle{background:transparent;border:1px dashed rgba(255,255,255,0.04)}
+.btn.small{padding:6px 8px;font-size:13px;border-radius:8px}
+
+/* Main container */
+.container{max-width:1100px;margin:26px auto;padding:0 18px}
+.hero{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:20px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.02);
+}
+.hero-left{flex:1;min-width:240px}
+.hero h1{margin:0;font-size:22px}
+.lead{margin:6px 0 0;color:var(--muted)}
+.hero-actions{display:flex;gap:8px}
+.hero-art-wrap{width:48%;max-width:520px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.hero-art{width:100%;height:auto;border-radius:12px;object-fit:cover;box-shadow:var(--card-shadow);border:1px solid rgba(255,255,255,0.03)}
+
+/* Grid section */
+.section-header{display:flex;flex-direction:column;margin:18px 0}
+.game-grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap:var(--gap);
+}
+
+/* Game card */
+.game-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.02);
+  box-shadow: var(--card-shadow);
+  display:flex;
+  flex-direction:column;
+  transition:transform .18s ease, box-shadow .18s ease;
+  min-height:180px;
+  outline:none;
+}
+.game-card:focus-within, .game-card:focus{box-shadow:0 8px 28px rgba(96,165,250,0.08);border-color:rgba(96,165,250,0.14);transform:translateY(-4px)}
+.preview{position:relative;height:110px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.placeholder-art svg{width:100%;height:100%;display:block}
+.badge{position:absolute;left:12px;top:12px;background:rgba(0,0,0,0.45);color:#e6eef8;padding:6px 8px;border-radius:999px;font-weight:700;font-size:12px;backdrop-filter:blur(4px)}
+.badge.accent{background:linear-gradient(90deg,#7c3aed 0%, #06b6d4 100%)}
+.badge.locked{background:#4b5563}
+.card-body{padding:12px 14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card-title{margin:0;font-size:15px}
+.card-desc{margin:0;color:var(--muted);font-size:13px}
+.card-actions{margin-top:auto;display:flex;gap:8px;align-items:center}
+
+/* States */
+.game-card.empty .card-title::after{content:" — empty";color:var(--muted);font-weight:500;font-size:12px;margin-left:6px}
+.game-card.coming-soon{border-style:dashed}
+.game-card.locked{opacity:0.95;filter:saturate(.85)}
+
+/* Footer */
+.site-footer{max-width:1100px;margin:28px auto;padding:14px 18px;display:flex;justify-content:space-between;color:var(--muted);font-size:13px}
+
+/* Modal */
+.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:32px;background:rgba(2,6,23,0.6);backdrop-filter:blur(6px);visibility:hidden;opacity:0;transition:opacity .18s ease, visibility .18s linear}
+.modal[aria-hidden="false"]{visibility:visible;opacity:1}
+.modal-panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:18px;width:min(900px,94%);border:1px solid rgba(255,255,255,0.03)}
+.modal-close{float:right;border:0;background:transparent;font-size:22px;padding:6px;cursor:pointer;color:var(--muted)}
+.modal-content{display:flex;gap:18px;align-items:flex-start}
+.modal-art{width:320px;height:180px;border-radius:10px;background:linear-gradient(90deg,#0b1220,#071025);box-shadow:var(--card-shadow);flex-shrink:0}
+.modal-meta{flex:1}
+.modal-actions{display:flex;gap:12px;margin-top:12px}
+
+/* Responsive */
+@media (max-width:960px){
+  .hero{flex-direction:column;align-items:flex-start}
+  .hero-art-wrap{width:100%;max-width:100%}
+  .hero-art{height:200px;object-fit:cover}
+  .controls{display:none}
+}
+@media (max-width:720px){
+  .game-grid{grid-template-columns: 1fr 1fr}
+}
+@media (max-width:420px){
+  .game-grid{grid-template-columns: 1fr}
+}
